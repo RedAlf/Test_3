@@ -1,0 +1,72 @@
+body {
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+}
+
+.mainBox {
+    padding: 20px 0 0 18px;
+    width: 350px;
+    height: 500px;
+    border: 1px solid black;
+
+    .field {
+        display: flex;
+        flex-flow: wrap;
+        width: 328px;
+        height: 328px;
+        margin-bottom: 15px;
+        border: 1px solid grey;
+
+        .cell {
+            width: 80px;
+            height: 80px;
+            border: 1px solid black;
+            cursor: pointer;
+        }
+
+        .color0 {
+            background: blue;
+        }
+
+        .color1 {
+            background: green;
+        }
+
+        .color2 {
+            background: red;
+        }
+
+        .color3 {
+            background: yellow;
+        }
+
+        .color4 {
+            background: purple;
+        }
+
+        .color5 {
+            background: grey;
+        }
+
+        .color6 {
+            background: lightseagreen;
+        }
+
+        .color7 {
+            background: burlywood;
+        }
+
+        .hidden {
+            background: white;
+        }
+
+        .solved {
+            width: 80px;
+            height: 80px;
+            border: 1px solid black;
+            cursor: pointer;
+            pointer-events: none;
+        }
+    }
+}
