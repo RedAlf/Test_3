@@ -9,6 +9,7 @@ const fieldSize = 4;
 let field = document.getElementsByClassName('field')[0];
 let start = document.getElementsByTagName('button')[0];
 let solved = 0;
+let timer = document.getElementsByClassName('timer')[0];
 
 
 function CheckCells(cell1, cell2) {
@@ -42,11 +43,11 @@ function CellSelected(cell) {
     let selectedCells = document.getElementsByClassName('selected');
     if ( selectedCells.length === 2 ) {
         if ( CheckCells(selectedCells[0], selectedCells[1]) === false ) {
-            setTimeout(Mistake(selectedCells[0], selectedCells[1]), 1000);
+            setTimeout(() => Mistake(selectedCells[0], selectedCells[1]), 300);
         } else {
             Match(selectedCells[0], selectedCells[1]);
             if ( solved === fieldSize * 2) {
-                alert('Вы выиграли!\nЗатраченное время: ')
+                setTimeout(() => alert('Вы выиграли!\nЗатраченное время: ' + timer.innerHTML), 1);
             }
         }
     }
@@ -96,7 +97,13 @@ function SetColors() {
     }
 };
 
+function Timer(start, form) {
+   form.innerHTML =  Math.round( (new Date() - start) / 1000 ) + 'c';
+}
+
 start.onclick = function() {
+    let startTime = new Date();
+    setInterval(() => Timer(startTime, timer), 1000);
     start.setAttribute('disabled', this.disabled);
     Initialisation();
     SetColors();
