@@ -21,33 +21,39 @@ function CheckCells(cell1, cell2) {
 };
 
 function Mistake(cell1, cell2) {
-    cell1.classList.toggle('hidden');
-    cell2.classList.toggle('hidden');
-    cell1.classList.toggle('selected');
-    cell2.classList.toggle('selected');
+    cell1.classList.add('hidden');
+    cell2.classList.add('hidden');
+    cell1.classList.remove('selected');
+    cell2.classList.remove('selected');
 };
 
 function Match(cell1, cell2) {
-    cell1.classList.toggle('selected');
-    cell1.classList.toggle('cell');
-    cell1.classList.toggle('solved');
-    cell2.classList.toggle('selected');
-    cell2.classList.toggle('cell');
-    cell2.classList.toggle('solved');
+    cell1.classList.remove('selected');
+    cell1.classList.remove('cell');
+    cell1.classList.add('solved');
+    cell2.classList.remove('selected');
+    cell2.classList.remove('cell');
+    cell2.classList.add('solved');
     solved++;
 }
 
 function CellSelected(cell) {
+    let selectedCells = document.getElementsByClassName('selected');
+
+    if ( selectedCells.length === 2 ) {
+        return false;
+    };
+
     cell.classList.toggle('hidden');
     cell.classList.toggle('selected');
-    let selectedCells = document.getElementsByClassName('selected');
+    
     if ( selectedCells.length === 2 ) {
         if ( CheckCells(selectedCells[0], selectedCells[1]) === false ) {
-            setTimeout(() => Mistake(selectedCells[0], selectedCells[1]), 300);
+            setTimeout(() => Mistake(selectedCells[0], selectedCells[1]), 200);
         } else {
             Match(selectedCells[0], selectedCells[1]);
             if ( solved === fieldSize * 2) {
-                setTimeout(() => alert('Вы выиграли!\nЗатраченное время: ' + timer.innerHTML), 1);
+                setTimeout(() => alert('Вы выиграли!\nЗатраченное время: ' + timer.innerHTML), 2);
             }
         }
     }
@@ -57,10 +63,17 @@ function CellSelected(cell) {
 function Initialisation() {
     for (let i = 0; i < fieldSize * fieldSize; i++) {
         let cell = document.createElement('div');
+        // let disabled = document.getElementsByClassName('disabled');
         cell.classList.add('cell', 'uncolored', 'hidden');
+
         cell.onclick = function() {
             CellSelected(this);
-        }
+        };
+
+        // disabled.onclick = function() {
+        //     return false;
+        // };
+
         field.appendChild(cell);
     };
 };
