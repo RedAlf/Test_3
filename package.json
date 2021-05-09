@@ -21,7 +21,7 @@
   "homepage": "https://github.com/RedAlf/Webpack#readme",
   "dependencies": {
     "jquery": "^3.4.1",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.21",
     "npm": "^6.9.0"
   },
   "devDependencies": {
